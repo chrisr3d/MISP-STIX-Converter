@@ -112,6 +112,13 @@ class STIX2IndicatorConverter(STIX2Converter, metaclass=ABCMeta):
     def __init__(self, main: _MAIN_PARSER_TYPING):
         self._set_main_parser(main)
 
+    def _create_attribute_dict(
+            self, indicator: _INDICATOR_TYPING, value: str) -> dict:
+        return {
+            'value': value, 'to_ids': True,
+            **super()._create_attribute_dict(indicator)
+        }
+
     def _compile_stix_pattern(self, indicator: _INDICATOR_TYPING) -> PatternData:
         try:
             self._pattern_parser.handle_indicator(indicator)
@@ -405,8 +412,13 @@ class ExternalSTIX2IndicatorConverter(
         if self._handle_object_forcing(attributes, force_object):
             self._handle_object_case(indicator, attributes, name)
         else:
+            attribute = attributes[0]
             self.main_parser._add_misp_attribute(
-                dict(self._create_attribute_dict(indicator), **attributes[0]),
+                {
+                    **attribute, **self._create_attribute_dict(
+                        indicator, attribute['value']
+                    )
+                },
                 indicator
             )
 
@@ -798,9 +810,14 @@ class ExternalSTIX2IndicatorConverter(
                 )
         if attributes:
             if len(attributes) == 1:
+                attribute = attributes[0]
                 self.main_parser._add_misp_attribute(
-                    dict(self._create_attribute_dict(indicator), **attributes[0]),
-                    indicator,
+                    {
+                        **attribute, **self._create_attribute_dict(
+                            indicator, attribute['value']
+                        )
+                    },
+                    indicator
                 )
             else:
                 for attribute in attributes:
@@ -825,11 +842,14 @@ class ExternalSTIX2IndicatorConverter(
                 )
         if attributes:
             if len(attributes) == 1:
+                attribute = attributes[0]
                 self.main_parser._add_misp_attribute(
-                    dict(
-                        self._create_attribute_dict(indicator), **attributes[0]
-                    ),
-                    indicator,
+                    {
+                        **attribute, **self._create_attribute_dict(
+                            indicator, attribute['value']
+                        )
+                    },
+                    indicator
                 )
             else:
                 for attribute in attributes:
@@ -1134,10 +1154,11 @@ class ExternalSTIX2IndicatorConverter(
             )
 
     def _parse_snort_pattern(self, indicator: _INDICATOR_TYPING):
-        self.main_parser._add_misp_attribute(
-            self._create_attribute_dict(indicator, indicator.pattern),
-            indicator
-        )
+        attribute = {
+            'type': 'snort',
+            **self._create_attribute_dict(indicator, indicator.pattern)
+        }
+        self.main_parser._add_misp_attribute(attribute, indicator)
 
     def _parse_software_pattern(
             self, pattern: PatternData, indicator: _INDICATOR_TYPING):
@@ -1667,16 +1688,15 @@ class InternalSTIX2IndicatorConverter(
 
     def _attribute_from_attachment_indicator(
             self, indicator: _INDICATOR_TYPING):
-        attribute = {
-            'to_ids': True, **super()._create_attribute_dict(indicator)
-        }
         pattern = indicator.pattern[1:-1]
+        data = None
         if ' AND ' in pattern:
             pattern, data_pattern = pattern.split(' AND ')
-            attribute['data'] = self._extract_value_from_pattern(
-                data_pattern
-            )
-        attribute['value'] = self._extract_value_from_pattern(pattern)
+            data = self._extract_value_from_pattern(data_pattern)
+        value = self._extract_value_from_pattern(pattern)
+        attribute = self._create_attribute_dict(indicator, value)
+        if data is not None:
+            attribute['data'] = data
         self.main_parser._add_misp_attribute(attribute, indicator)
 
     def _attribute_from_double_pattern_indicator(
@@ -1750,14 +1770,6 @@ class InternalSTIX2IndicatorConverter(
             indicator, self._extract_value_from_pattern(indicator.pattern[1:-1])
         )
         self.main_parser._add_misp_attribute(attribute, indicator)
-
-    def _create_attribute_dict(
-            self, indicator: _INDICATOR_TYPING, value: str) -> dict:
-        attribute = {
-            'value': value, 'to_ids': True,
-            **super()._create_attribute_dict(indicator)
-        }
-        return attribute
 
     ############################################################################
     #                       MISP OBJECTS PARSING METHODS                       #

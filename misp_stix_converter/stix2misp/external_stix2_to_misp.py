@@ -400,6 +400,7 @@ class ExternalSTIX2toMISPParser(STIX2toMISPParser, ExternalSTIXtoMISPParser):
         self._indicator_references = {
             indicator_id: {obs_type: tuple(val[-1] for val in pattern)}
             for indicator_id, indicator in self._indicator.items()
+            if getattr(indicator, 'pattern_type', 'stix') == 'stix'
             for obs_type, pattern in pattern_parser(indicator).comparisons.items()
         }
         if score in (3, 7):
