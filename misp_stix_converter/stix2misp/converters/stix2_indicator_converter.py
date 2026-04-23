@@ -39,19 +39,19 @@ class STIX2IndicatorMapping(STIX2Mapping, metaclass=ABCMeta):
 
     # MISP OBJECTS MAPPING
     __sigma_object_mapping = Mapping(
-        pattern=STIX2Mapping.sigma_attribute(),
+        pattern={'type': 'sigma', 'object_relation': 'sigma'},
         description=STIX2Mapping.comment_attribute(),
-        name=STIX2Mapping.sigma_rule_name_attribute()
+        name={'type': 'text', 'object_relation': 'sigma-rule-name'}
     )
     __suricata_object_mapping = Mapping(
-        pattern=STIX2Mapping.snort_attribute(),
+        pattern={'type': 'snort', 'object_relation': 'suricata'},
         description=STIX2Mapping.comment_attribute(),
         pattern_version=STIX2Mapping.version_attribute()
     )
     __yara_object_mapping = Mapping(
-        pattern=STIX2Mapping.yara_attribute(),
+        pattern={'type': 'yara', 'object_relation': 'yara'},
         description=STIX2Mapping.comment_attribute(),
-        name=STIX2Mapping.yara_rule_name_attribute(),
+        name={'type': 'text', 'object_relation': 'yara-rule-name'},
         pattern_version=STIX2Mapping.version_attribute()
     )
 
@@ -92,6 +92,10 @@ class STIX2IndicatorMapping(STIX2Mapping, metaclass=ABCMeta):
         return cls.__sigma_object_mapping
 
     @classmethod
+    def sigma_reference_attribute(cls) -> dict:
+        return cls.reference_attribute()
+
+    @classmethod
     def socket_extension_pattern_mapping(cls, field: str) -> dict | None:
         return cls.network_socket_extension_mapping().get(field)
 
@@ -106,6 +110,10 @@ class STIX2IndicatorMapping(STIX2Mapping, metaclass=ABCMeta):
     @classmethod
     def yara_object_mapping(cls) -> dict:
         return cls.__yara_object_mapping
+
+    @classmethod
+    def yara_reference_attribute(cls) -> dict:
+        return cls.reference_attribute()
 
 
 class STIX2IndicatorConverter(STIX2Converter, metaclass=ABCMeta):
@@ -150,18 +158,11 @@ class ExternalSTIX2IndicatorMapping(
         STIX2IndicatorMapping, ExternalSTIX2Mapping):
     __mac_address_pattern = '^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$'
     __pattern_forbidden_relations = (
-        ' < ',
-        ' <= ',
-        ' > ',
-        ' >= ',
-        ' FOLLOWEDBY ',
-        ' ISSUBSET ',
-        ' ISSUPERSET',
-        ' MATCHES ',
-        ' NOT ',
-        ' REPEATS ',
-        ' WITHIN '
+        ' < ', ' <= ', ' > ', ' >= ',
+        ' FOLLOWEDBY ', ' ISSUBSET ', ' ISSUPERSET',
+        ' MATCHES ', ' NOT ', ' REPEATS ', ' WITHIN '
     )
+    __patterning_language_types = ('sigma', 'suricata', 'yara')
     __valid_pattern_assertions = ('=', 'IN', 'LIKE')
 
     # MAIN MAPPING
@@ -325,6 +326,10 @@ class ExternalSTIX2IndicatorMapping(
         return cls.__pattern_mapping.get(field)
 
     @classmethod
+    def patterning_language_types(cls) -> tuple:
+        return cls.__patterning_language_types
+
+    @classmethod
     def process_pattern_mapping(cls, field: str) -> dict | None:
         return cls.__process_pattern_mapping.get(field)
 
@@ -442,11 +447,12 @@ class ExternalSTIX2IndicatorConverter(
     def _handle_pattern_mapping(self, indicator: _INDICATOR_TYPING) -> str:
         if isinstance(indicator, Indicator_v21):
             pattern_type = indicator.pattern_type
+            if pattern_type in self._mapping.patterning_language_types():
+                return '_parse_patterning_language_pattern'
+            if pattern_type == 'snort':
+                return '_parse_snort_pattern'
             if pattern_type != 'stix':
-                try:
-                    return f'_parse_{pattern_type}_pattern'
-                except KeyError:
-                    raise UnknownPatternTypeError(pattern_type)
+                return '_create_stix_pattern_object'
         pattern_too_complex = any(
             keyword in indicator.pattern for keyword
             in self._mapping.pattern_forbidden_relations()
@@ -454,6 +460,26 @@ class ExternalSTIX2IndicatorConverter(
         if pattern_too_complex:
             return '_create_stix_pattern_object'
         return '_parse_stix_pattern'
+
+    def _parse_patterning_language_pattern(self, indicator: _INDICATOR_TYPING):
+        feature = indicator.pattern_type
+        misp_object = self._create_misp_object(feature, indicator)
+        mapping = getattr(self._mapping, f'{feature}_object_mapping')()
+        for field, attribute in mapping.items():
+            if hasattr(indicator, field):
+                misp_object.add_attribute(
+                    **{'value': getattr(indicator, field), **attribute}
+                )
+        if hasattr(indicator, 'external_references'):
+            attr = getattr(self._mapping, f'{feature}_reference_attribute')()
+            for reference in indicator.external_references:
+                if not hasattr(reference, 'url'):
+                    continue
+                attribute = {'value': reference.url, **attr}
+                if hasattr(reference, 'description'):
+                    attribute['comment'] = reference.description
+                misp_object.add_attribute(**attribute)
+        self.main_parser._add_misp_object(misp_object, indicator)
 
     def _parse_stix_pattern(self, indicator: _INDICATOR_TYPING):
         compiled_pattern = self._compile_stix_pattern(indicator)
@@ -1116,43 +1142,6 @@ class ExternalSTIX2IndicatorConverter(
             )
             yield misp_object.uuid
 
-    def _parse_sigma_pattern(self, indicator: _INDICATOR_TYPING):
-        if hasattr(indicator, 'name') or hasattr(indicator, 'external_references'):
-            attributes = []
-            for field, mapping in self._mapping.sigma_object_mapping().items():
-                if hasattr(indicator, field):
-                    attributes.append(
-                        {'value': getattr(indicator, field), **mapping}
-                    )
-            if hasattr(indicator, 'external_references'):
-                for reference in indicator.external_references:
-                    if not hasattr(reference, 'url'):
-                        continue
-                    attribute = {
-                        'value': reference.url,
-                        **self._mapping.sigma_reference_attribute()
-                    }
-                    if hasattr(reference, 'description'):
-                        attribute['comment'] = reference.description
-                    attributes.append(attribute)
-            if len(attributes) == 1 and attributes[0]['type'] == 'sigma':
-                self.main_parser._add_misp_attribute(
-                    self._create_attribute_dict(
-                        indicator, attributes[0]['value']
-                    ),
-                    indicator
-                )
-            else:
-                misp_object = self._create_misp_object('sigma', indicator)
-                for attribute in attributes:
-                    misp_object.add_attribute(**attribute)
-                self.main_parser._add_misp_object(misp_object, indicator)
-        else:
-            self.main_parser._add_misp_attribute(
-                self._create_attribute_dict(indicator, indicator.pattern),
-                indicator
-            )
-
     def _parse_snort_pattern(self, indicator: _INDICATOR_TYPING):
         attribute = {
             'type': 'snort',
@@ -1176,19 +1165,6 @@ class ExternalSTIX2IndicatorConverter(
         else:
             self._no_converted_content_from_pattern_warning(indicator)
             self._create_stix_pattern_object(indicator)
-
-    def _parse_suricata_pattern(self, indicator: _INDICATOR_TYPING):
-        misp_object = self._create_misp_object('suricata', indicator)
-        for feature, mapping in self._mapping.suricata_object_mapping().items():
-            if hasattr(indicator, feature):
-                misp_object.add_attribute(
-                    **{'value': getattr(indicator, feature), **mapping}
-                )
-        if hasattr(indicator, 'object_marking_refs'):
-            self._handle_marking_refs(
-                indicator.object_marking_refs, misp_object
-            )
-        self.main_parser._add_misp_object(misp_object, indicator)
 
     def _parse_url_pattern(
             self, pattern: PatternData, indicator: _INDICATOR_TYPING):
@@ -1259,32 +1235,6 @@ class ExternalSTIX2IndicatorConverter(
         else:
             self._no_converted_content_from_pattern_warning(indicator)
             self._create_stix_pattern_object(indicator)
-
-    def _parse_yara_pattern(self, indicator: _INDICATOR_TYPING):
-        if hasattr(indicator, 'pattern_version'):
-            misp_object = self._create_misp_object('yara', indicator)
-            for feature, mapping in self._mapping.yara_object_mapping().items():
-                if hasattr(indicator, feature):
-                    misp_object.add_attribute(
-                        **{'value': getattr(indicator, feature), **mapping}
-                    )
-            if hasattr(indicator, 'external_references'):
-                for reference in indicator.external_references:
-                    if not hasattr(reference, 'url'):
-                        continue
-                    attribute = {
-                        'value': reference.url,
-                        **self._mapping.yara_reference_attribute()
-                    }
-                    if hasattr(reference, 'description'):
-                        attribute['comment'] = reference.description
-                    misp_object.add_attribute(**attribute)
-            self.main_parser._add_misp_object(misp_object, indicator)
-        else:
-            self.main_parser._add_misp_attribute(
-                self._create_attribute_dict(indicator, indicator.pattern),
-                indicator
-            )
 
     ############################################################################
     #                             UTILITY METHODS.                             #
