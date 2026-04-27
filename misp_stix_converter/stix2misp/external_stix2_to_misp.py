@@ -76,6 +76,13 @@ class ExternalSTIX2toMISPParser(STIX2toMISPParser, ExternalSTIXtoMISPParser):
                 for extension in value.values():
                     yield from self._extract_object_refs(extension)
 
+    def _reset_bundle_state(self):
+        super()._reset_bundle_state()
+        try:
+            del self.__standalone_object_refs
+        except AttributeError:
+            pass
+
     def _load_stix_bundle(self, bundle: _BUNDLE_TYPING):
         stix_objects, object_refs = self._partition_stix_objects(bundle.objects)
         standalone_objects = {}
@@ -285,6 +292,8 @@ class ExternalSTIX2toMISPParser(STIX2toMISPParser, ExternalSTIXtoMISPParser):
     def _handle_unparsed_content(self):
         if hasattr(self, 'standalone_object_refs'):
             for object_ref in self.standalone_object_refs:
+                if object_ref in self._parsed_object_refs:
+                    continue
                 object_type = object_ref.split('--')[0]
                 if object_type in ('relationship', 'sighting'):
                     continue
