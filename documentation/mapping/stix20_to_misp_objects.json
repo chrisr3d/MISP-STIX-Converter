@@ -188,9 +188,9 @@
                     "uuid": "5ac47782-e1b8-40b6-96b4-02510a00020f",
                     "ObjectReference": [
                         {
-                            "uuid": "aab1d13d-a5f0-449d-8458-d6b3e09669ca",
+                            "uuid": "3ddb079a-6f5c-4ea3-b78f-bb76da2df312",
                             "object_uuid": "5ac47782-e1b8-40b6-96b4-02510a00020f",
-                            "referenced_uuid": "f6b075bc-5355-48f6-af41-8900ed09b56c",
+                            "referenced_uuid": "d790f3a3-1d89-420a-8fb9-d508dd5ddf2c",
                             "relationship_type": "includes"
                         }
                     ],
@@ -259,13 +259,13 @@
                     "meta-category": "file",
                     "template_uuid": "cf7adecc-d4f0-4e88-9d90-f978ee151a07",
                     "description": "Object describing a Portable Executable",
-                    "template_version": "10",
-                    "uuid": "f6b075bc-5355-48f6-af41-8900ed09b56c",
+                    "template_version": "11",
+                    "uuid": "d790f3a3-1d89-420a-8fb9-d508dd5ddf2c",
                     "ObjectReference": [
                         {
-                            "uuid": "0ec5b423-3bfb-4a91-a90d-2e04773db343",
-                            "object_uuid": "f6b075bc-5355-48f6-af41-8900ed09b56c",
-                            "referenced_uuid": "90d7e822-d98f-4628-9b06-5cac848678d4",
+                            "uuid": "6bb6d11c-4aea-4bea-8d8c-5a30c4e0d6b3",
+                            "object_uuid": "d790f3a3-1d89-420a-8fb9-d508dd5ddf2c",
+                            "referenced_uuid": "674767bd-2a9e-4bea-9f8a-53fec75c2608",
                             "relationship_type": "includes"
                         }
                     ],
@@ -416,7 +416,7 @@
                     "template_uuid": "198a17d2-a135-4b25-9a32-5aa4e632014a",
                     "description": "Object describing a section of a Portable Executable",
                     "template_version": "3",
-                    "uuid": "90d7e822-d98f-4628-9b06-5cac848678d4",
+                    "uuid": "674767bd-2a9e-4bea-9f8a-53fec75c2608",
                     "Attribute": [
                         {
                             "uuid": "88272e26-8dc6-5fe2-bceb-ac782ffc0a0a",
@@ -527,7 +527,7 @@
                     "uuid": "5ac47782-e1b8-40b6-96b4-02510a00020f",
                     "ObjectReference": [
                         {
-                            "uuid": "c3080bc1-1de7-459c-963f-6d81fd1de1f2",
+                            "uuid": "df95b37d-5941-43e2-99a1-ea492107479c",
                             "object_uuid": "5ac47782-e1b8-40b6-96b4-02510a00020f",
                             "referenced_uuid": "61f720bc-2fb8-5a7a-a849-4542b59048e4",
                             "relationship_type": "includes"
@@ -602,11 +602,11 @@
                     "meta-category": "file",
                     "template_uuid": "cf7adecc-d4f0-4e88-9d90-f978ee151a07",
                     "description": "Object describing a Portable Executable",
-                    "template_version": "10",
+                    "template_version": "11",
                     "uuid": "61f720bc-2fb8-5a7a-a849-4542b59048e4",
                     "ObjectReference": [
                         {
-                            "uuid": "fe78273a-e801-40fd-9dd9-c82a937eae98",
+                            "uuid": "382e6f3d-9693-4394-901d-517231f36b57",
                             "object_uuid": "61f720bc-2fb8-5a7a-a849-4542b59048e4",
                             "referenced_uuid": "fb7ddfd6-13c1-5ca6-bd1e-04efa3af3247",
                             "relationship_type": "includes"
@@ -1001,7 +1001,7 @@
                     },
                     {
                         "data": "cHJpbnQoJ1lvdSBhcmUgaW5mZWN0ZWQnKQo=",
-                        "uuid": "a155eb82-bcc7-4881-a946-26be5070b8c1",
+                        "uuid": "2684d324-f5ff-46b4-9636-7a10e536b096",
                         "object_relation": "script-as-attachment",
                         "value": "infected.py",
                         "type": "attachment",
@@ -1101,7 +1101,7 @@
                     },
                     {
                         "data": "cHJpbnQoJ0hlbGxvIFdvcmxkJykK",
-                        "uuid": "8443a9a6-f7c5-420a-adf7-b3308d17d489",
+                        "uuid": "9f09d857-7bad-491c-a304-c1486dbc33df",
                         "object_relation": "script-as-attachment",
                         "value": "hello.py",
                         "type": "attachment",
@@ -1546,7 +1546,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "48d7af00-bb7d-452f-8c24-aabd30e2d053",
+                        "uuid": "dc672228-2583-41a6-bf80-1264f739187f",
                         "object_relation": "id",
                         "value": "9",
                         "type": "text",
@@ -4312,7 +4312,7 @@
                 "meta-category": "network",
                 "template_uuid": "9f8cea74-16fe-4968-a2b4-026676949ac6",
                 "description": "An IP address (or domain or hostname) and a port seen as a tuple (or as a triple) in a specific time frame.",
-                "template_version": "9",
+                "template_version": "10",
                 "uuid": "5ac47edc-31e4-4402-a7b6-040d0a00020f",
                 "Attribute": [
                     {
@@ -4382,7 +4382,7 @@
                 "meta-category": "network",
                 "template_uuid": "9f8cea74-16fe-4968-a2b4-026676949ac6",
                 "description": "An IP address (or domain or hostname) and a port seen as a tuple (or as a triple) in a specific time frame.",
-                "template_version": "9",
+                "template_version": "10",
                 "uuid": "5ac47edc-31e4-4402-a7b6-040d0a00020f",
                 "Attribute": [
                     {
@@ -5375,7 +5375,7 @@
                 "uuid": "5afacc53-c0b0-4825-a6ee-03c80a00020f",
                 "Attribute": [
                     {
-                        "uuid": "4181ceb5-384d-43a9-aee7-ab18a3d138f1",
+                        "uuid": "a720c6a6-bf99-4d07-90ce-e838b3a28f44",
                         "object_relation": "ip-src",
                         "value": "1.2.3.4",
                         "type": "ip-src",
@@ -5384,7 +5384,7 @@
                         "to_ids": true
                     },
                     {
-                        "uuid": "0168754e-c2ee-4777-82de-5b12b898ebf3",
+                        "uuid": "3129b4df-534e-44a0-96a1-f925343ab6d2",
                         "object_relation": "ip-dst",
                         "value": "5.6.7.8",
                         "type": "ip-dst",
@@ -5393,7 +5393,7 @@
                         "to_ids": true
                     },
                     {
-                        "uuid": "d2ab54e6-418e-4998-80f2-dfc40978a84c",
+                        "uuid": "a963c74e-9d8f-4576-aeab-082bdde41200",
                         "object_relation": "hostname-dst",
                         "value": "circl.lu",
                         "type": "hostname",
@@ -5420,7 +5420,7 @@
                         "to_ids": true
                     },
                     {
-                        "uuid": "828b207c-e564-4a2b-b009-bf49b3850824",
+                        "uuid": "271acc9f-d791-47a2-bcc7-d14e399df482",
                         "object_relation": "layer3-protocol",
                         "value": "IP",
                         "type": "text",
@@ -5429,7 +5429,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "b8ba643a-6021-4d37-9900-1bdfc9d6e938",
+                        "uuid": "8a594e9d-0ae7-4ac1-99de-8b7d267b6009",
                         "object_relation": "layer4-protocol",
                         "value": "TCP",
                         "type": "text",
@@ -5438,7 +5438,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "cbc128d7-9f92-4343-9b2e-4e31deb6b525",
+                        "uuid": "aea7582b-a611-4948-a6ca-10d5ee60a81f",
                         "object_relation": "layer7-protocol",
                         "value": "HTTP",
                         "type": "text",
@@ -5640,7 +5640,7 @@
                 "uuid": "5afb3223-0988-4ef1-a920-02070a00020f",
                 "Attribute": [
                     {
-                        "uuid": "3d493d1f-79ef-4b42-9210-ef75a06f4cf7",
+                        "uuid": "9557fb73-dfcc-4262-933d-93aa00accdcd",
                         "object_relation": "ip-src",
                         "value": "1.2.3.4",
                         "type": "ip-src",
@@ -5649,7 +5649,7 @@
                         "to_ids": true
                     },
                     {
-                        "uuid": "244736c7-22a7-4087-95a4-9428eadcbe2a",
+                        "uuid": "f4219cf3-c5c3-45f1-a3bd-00b14e3ab99f",
                         "object_relation": "ip-dst",
                         "value": "5.6.7.8",
                         "type": "ip-dst",
@@ -5658,7 +5658,7 @@
                         "to_ids": true
                     },
                     {
-                        "uuid": "06b412eb-de46-4923-bb1a-2ad8adb5f275",
+                        "uuid": "01dce45c-8dc7-42a9-bb83-9d65ec8a407b",
                         "object_relation": "hostname-dst",
                         "value": "circl.lu",
                         "type": "hostname",
@@ -8000,11 +8000,11 @@
                 "meta-category": "vulnerability",
                 "template_uuid": "81650945-f186-437b-8945-9f31715d32da",
                 "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
-                "template_version": "9",
+                "template_version": "12",
                 "uuid": "5e579975-e9cc-46c6-a6ad-1611a964451a",
                 "Attribute": [
                     {
-                        "uuid": "7df8949a-8175-4b68-b078-b9881bb96ec4",
+                        "uuid": "07c6f904-8615-4070-bbc4-6dac133a08b6",
                         "object_relation": "id",
                         "value": "CVE-2017-11774",
                         "type": "vulnerability",
@@ -8013,7 +8013,7 @@
                         "category": "External analysis"
                     },
                     {
-                        "uuid": "15c44501-4b98-44ff-b25d-3284baad21ac",
+                        "uuid": "f4f3a41c-ca1d-4e5b-8102-b7048459a090",
                         "object_relation": "references",
                         "value": "http://www.securityfocus.com/bid/101098",
                         "type": "link",
@@ -8022,7 +8022,7 @@
                         "category": "External analysis"
                     },
                     {
-                        "uuid": "ecf80c31-cfe7-43be-90e1-add57c64b23c",
+                        "uuid": "eb77d3e2-52cb-4480-be12-9e6517642acd",
                         "object_relation": "references",
                         "value": "https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2017-11774",
                         "type": "link",
@@ -8114,7 +8114,7 @@
                 "uuid": "5ac3444e-145c-4749-8467-02550a00020f",
                 "Attribute": [
                     {
-                        "uuid": "6a53d751-4521-42b1-a989-fc5b0f4abeb2",
+                        "uuid": "62a4b790-3549-4313-afdc-a93235dc0bbb",
                         "object_relation": "x509-fingerprint-md5",
                         "value": "b2a5abfeef9e36964281a31e17b57c97",
                         "type": "x509-fingerprint-md5",
@@ -8123,7 +8123,7 @@
                         "category": "Network activity"
                     },
                     {
-                        "uuid": "2b56b370-b382-4bff-8543-ab1fb8555656",
+                        "uuid": "93c9e99b-d51b-400f-8530-6b70fd9f28c7",
                         "object_relation": "x509-fingerprint-sha1",
                         "value": "5898fc860300e228dcd54c0b1045b5fa0dcda502",
                         "type": "x509-fingerprint-sha1",
@@ -8132,7 +8132,7 @@
                         "category": "Network activity"
                     },
                     {
-                        "uuid": "d3e1eb28-e801-4e84-b867-38890583db0f",
+                        "uuid": "048b28a2-66c0-430d-8c81-4f8ba0ea9147",
                         "object_relation": "issuer",
                         "value": "Issuer Name",
                         "type": "text",
@@ -8141,7 +8141,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "0094d795-40d5-4881-bf15-a29cf8309547",
+                        "uuid": "2eec915b-73f2-43ed-a1f3-40b5d81a5d44",
                         "object_relation": "pubkey-info-algorithm",
                         "value": "PublicKeyAlgorithm",
                         "type": "text",
@@ -8150,7 +8150,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "7ef46333-b9e3-4365-99e8-b175baec9609",
+                        "uuid": "7f94d3b5-d5df-479d-b553-268d32843da7",
                         "object_relation": "pubkey-info-exponent",
                         "value": "2",
                         "type": "text",
@@ -8159,7 +8159,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "a698a5cd-7369-4a66-adcd-f2a2d4f4cf90",
+                        "uuid": "4eb8ce37-3390-45ae-8638-853c515dc0af",
                         "object_relation": "pubkey-info-modulus",
                         "value": "C5",
                         "type": "text",
@@ -8168,7 +8168,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "14e1e737-b37b-43b6-81ba-4e46a98c9351",
+                        "uuid": "5b1fb36c-9c0a-4c14-aca2-e3b8c7a35f7f",
                         "object_relation": "serial-number",
                         "value": "1234567890",
                         "type": "text",
@@ -8177,7 +8177,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "c42bd39b-6139-449f-9b9c-858e0d1f3e63",
+                        "uuid": "966bedd1-62ee-4445-a125-3ef1e772519f",
                         "object_relation": "signature_algorithm",
                         "value": "SHA1_WITH_RSA_ENCRYPTION",
                         "type": "text",
@@ -8186,7 +8186,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "835dcc82-7661-4a9a-bc39-d74d638124e7",
+                        "uuid": "797e45da-e9a7-414f-94d0-114d8b47115e",
                         "object_relation": "subject",
                         "value": "CertificateSubject",
                         "type": "text",
@@ -8195,7 +8195,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "4039c9b8-7eb0-4789-ad70-abb4e0c2f56e",
+                        "uuid": "bd7bec90-785d-46bc-814a-012c543c1cb8",
                         "object_relation": "version",
                         "value": "1",
                         "type": "text",
@@ -8204,7 +8204,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "686e5bf0-e83c-475b-aa4c-b1920aed4a89",
+                        "uuid": "ee5812ec-0060-48cb-a47a-dd048ae9d1ea",
                         "object_relation": "validity-not-after",
                         "value": "2021-01-01T00:00:00+00:00",
                         "type": "datetime",
@@ -8213,7 +8213,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "ec7c14d5-b7cb-4f3f-953f-4180988153c2",
+                        "uuid": "bba01b7c-3b75-4a2d-8c41-3eeb6e7cc84a",
                         "object_relation": "validity-not-before",
                         "value": "2020-01-01T00:00:00+00:00",
                         "type": "datetime",
@@ -8222,7 +8222,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "fca33cd0-2dfe-411d-a7f9-e162f3a2d068",
+                        "uuid": "f7452b6f-0040-4b5f-ae6d-73b5282df91c",
                         "object_relation": "pem",
                         "value": "RawCertificateInPEMFormat",
                         "type": "text",

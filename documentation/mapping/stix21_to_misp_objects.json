@@ -212,9 +212,9 @@
                     "uuid": "5ac47782-e1b8-40b6-96b4-02510a00020f",
                     "ObjectReference": [
                         {
-                            "uuid": "a182ab3b-dacb-44e0-aa21-62ecccadbd8d",
+                            "uuid": "107fc556-59f3-4ac1-a26e-b6bd546008b4",
                             "object_uuid": "5ac47782-e1b8-40b6-96b4-02510a00020f",
-                            "referenced_uuid": "0316944c-28bd-4e89-b9cb-1f06520dfc4c",
+                            "referenced_uuid": "468f41c6-61b7-499b-910e-5d96df9c2b07",
                             "relationship_type": "includes"
                         }
                     ],
@@ -283,13 +283,13 @@
                     "meta-category": "file",
                     "template_uuid": "cf7adecc-d4f0-4e88-9d90-f978ee151a07",
                     "description": "Object describing a Portable Executable",
-                    "template_version": "10",
-                    "uuid": "0316944c-28bd-4e89-b9cb-1f06520dfc4c",
+                    "template_version": "11",
+                    "uuid": "468f41c6-61b7-499b-910e-5d96df9c2b07",
                     "ObjectReference": [
                         {
-                            "uuid": "8e10e57f-cd95-4c0a-844b-017b60810b16",
-                            "object_uuid": "0316944c-28bd-4e89-b9cb-1f06520dfc4c",
-                            "referenced_uuid": "c98f04cb-4933-4549-b969-317f0f96b5bf",
+                            "uuid": "076ec9e1-e7bd-430b-a79a-7334ff512c42",
+                            "object_uuid": "468f41c6-61b7-499b-910e-5d96df9c2b07",
+                            "referenced_uuid": "7fa660c4-63df-453f-96db-ed66f0a1072a",
                             "relationship_type": "includes"
                         }
                     ],
@@ -440,7 +440,7 @@
                     "template_uuid": "198a17d2-a135-4b25-9a32-5aa4e632014a",
                     "description": "Object describing a section of a Portable Executable",
                     "template_version": "3",
-                    "uuid": "c98f04cb-4933-4549-b969-317f0f96b5bf",
+                    "uuid": "7fa660c4-63df-453f-96db-ed66f0a1072a",
                     "Attribute": [
                         {
                             "uuid": "88272e26-8dc6-5fe2-bceb-ac782ffc0a0a",
@@ -554,7 +554,7 @@
                     "uuid": "5ac47782-e1b8-40b6-96b4-02510a00020f",
                     "ObjectReference": [
                         {
-                            "uuid": "c72416a0-c16a-4fd9-bc1a-fc23b08161fc",
+                            "uuid": "753ae662-fcc0-47a0-80e2-5e492c5e78a8",
                             "object_uuid": "5ac47782-e1b8-40b6-96b4-02510a00020f",
                             "referenced_uuid": "61f720bc-2fb8-5a7a-a849-4542b59048e4",
                             "relationship_type": "includes"
@@ -629,11 +629,11 @@
                     "meta-category": "file",
                     "template_uuid": "cf7adecc-d4f0-4e88-9d90-f978ee151a07",
                     "description": "Object describing a Portable Executable",
-                    "template_version": "10",
+                    "template_version": "11",
                     "uuid": "61f720bc-2fb8-5a7a-a849-4542b59048e4",
                     "ObjectReference": [
                         {
-                            "uuid": "74436b34-b0c7-4b22-81e9-bac89ea64b7f",
+                            "uuid": "f853e870-bfe7-4ec6-b605-7cef362fb514",
                             "object_uuid": "61f720bc-2fb8-5a7a-a849-4542b59048e4",
                             "referenced_uuid": "fb7ddfd6-13c1-5ca6-bd1e-04efa3af3247",
                             "relationship_type": "includes"
@@ -1004,7 +1004,7 @@
                     },
                     {
                         "data": "cHJpbnQoJ1lvdSBhcmUgaW5mZWN0ZWQnKQo=",
-                        "uuid": "6839c562-a332-480e-a3b3-0b685ea5b253",
+                        "uuid": "99e0affd-f2ca-4028-83a5-7e85c1a1b218",
                         "object_relation": "script-as-attachment",
                         "value": "infected.py",
                         "type": "attachment",
@@ -1106,7 +1106,7 @@
                     },
                     {
                         "data": "cHJpbnQoJ0hlbGxvIFdvcmxkJykK",
-                        "uuid": "6f8a1605-dd41-4a3c-91a5-3cce27b2488c",
+                        "uuid": "ea61fd05-5a8f-4803-a1e8-4fa49b340ccb",
                         "object_relation": "script-as-attachment",
                         "value": "hello.py",
                         "type": "attachment",
@@ -1330,13 +1330,13 @@
                 "uuid": "eb6592bb-675c-48f3-9272-157141196b93",
                 "ObjectReference": [
                     {
-                        "uuid": "c5321037-519c-43dd-84eb-b77a2c0a59a5",
+                        "uuid": "cbd9e6f1-3d76-4333-a3c7-fede8ee4a143",
                         "object_uuid": "eb6592bb-675c-48f3-9272-157141196b93",
                         "referenced_uuid": "5ac47edc-31e4-4402-a7b6-040d0a00020f",
                         "relationship_type": "annotates"
                     },
                     {
-                        "uuid": "fa0bd531-537a-459a-bc35-d8e68e981f9f",
+                        "uuid": "3f6a0d3b-eff9-41e0-b7a1-9f0dae5db617",
                         "object_uuid": "eb6592bb-675c-48f3-9272-157141196b93",
                         "referenced_uuid": "91ae0a21-c7ae-4c7f-b84b-b84a7ce53d1f",
                         "relationship_type": "annotates"
@@ -1655,7 +1655,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "dba1094c-3ff2-4fc5-9888-44d868937a08",
+                        "uuid": "087a7ced-5e29-4791-a0de-27207f3e8159",
                         "object_relation": "id",
                         "value": "9",
                         "type": "text",
@@ -3615,7 +3615,7 @@
                 "meta-category": "misc",
                 "template_uuid": "cd6f2238-ba55-4888-82c4-104e6e1acf21",
                 "description": "An object to describe a geographic location.",
-                "template_version": "7",
+                "template_version": "8",
                 "uuid": "6a10dac8-71ac-4d9b-8269-1e9c73ea4d8f",
                 "Attribute": [
                     {
@@ -3700,7 +3700,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "c0925e74-336c-44b2-a871-96b9c99f1606",
+                        "uuid": "ecaafcba-a2e6-4a9a-ba7e-80213515dc4e",
                         "object_relation": "accuracy-radius",
                         "value": 1.0,
                         "type": "float",
@@ -4709,7 +4709,7 @@
                 "meta-category": "network",
                 "template_uuid": "9f8cea74-16fe-4968-a2b4-026676949ac6",
                 "description": "An IP address (or domain or hostname) and a port seen as a tuple (or as a triple) in a specific time frame.",
-                "template_version": "9",
+                "template_version": "10",
                 "uuid": "5ac47edc-31e4-4402-a7b6-040d0a00020f",
                 "Attribute": [
                     {
@@ -4782,7 +4782,7 @@
                 "meta-category": "network",
                 "template_uuid": "9f8cea74-16fe-4968-a2b4-026676949ac6",
                 "description": "An IP address (or domain or hostname) and a port seen as a tuple (or as a triple) in a specific time frame.",
-                "template_version": "9",
+                "template_version": "10",
                 "uuid": "5ac47edc-31e4-4402-a7b6-040d0a00020f",
                 "Attribute": [
                     {
@@ -5840,7 +5840,7 @@
                 "uuid": "5afacc53-c0b0-4825-a6ee-03c80a00020f",
                 "Attribute": [
                     {
-                        "uuid": "216c7481-9188-4eb9-9c22-a811c8016658",
+                        "uuid": "8ec0ab7e-3449-4f80-b9fc-9c4d3c8a8423",
                         "object_relation": "ip-src",
                         "value": "1.2.3.4",
                         "type": "ip-src",
@@ -5849,7 +5849,7 @@
                         "to_ids": true
                     },
                     {
-                        "uuid": "ebdb1036-9bee-42b3-bf84-bedf2a1cb0e1",
+                        "uuid": "39d975bd-e88e-4232-9018-4cb2ff5dfb2b",
                         "object_relation": "ip-dst",
                         "value": "5.6.7.8",
                         "type": "ip-dst",
@@ -5858,7 +5858,7 @@
                         "to_ids": true
                     },
                     {
-                        "uuid": "774135fc-8ccb-4349-b59f-07ba42a320b6",
+                        "uuid": "0e5ab13c-f669-474f-a032-bf4aa4f2015f",
                         "object_relation": "hostname-dst",
                         "value": "circl.lu",
                         "type": "hostname",
@@ -5885,7 +5885,7 @@
                         "to_ids": true
                     },
                     {
-                        "uuid": "0ad8ad22-6fac-4989-b752-bdfe5dcb6843",
+                        "uuid": "386bfbce-f91c-49a4-b1dc-c1c13fbe0eab",
                         "object_relation": "layer3-protocol",
                         "value": "IP",
                         "type": "text",
@@ -5894,7 +5894,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "477ece44-0a63-4bec-8c75-81633e148444",
+                        "uuid": "cfe9a3cb-719b-4861-8bf9-3ead3f2470ad",
                         "object_relation": "layer4-protocol",
                         "value": "TCP",
                         "type": "text",
@@ -5903,7 +5903,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "b24095ba-0969-47e3-8d45-33d7476c0708",
+                        "uuid": "158bde1d-a913-4dd7-bf33-ab9b898b8314",
                         "object_relation": "layer7-protocol",
                         "value": "HTTP",
                         "type": "text",
@@ -6122,7 +6122,7 @@
                 "uuid": "5afb3223-0988-4ef1-a920-02070a00020f",
                 "Attribute": [
                     {
-                        "uuid": "10b1e3d8-aca3-4b7b-8a8c-6fad76ddefb6",
+                        "uuid": "d1a91a72-06c6-4e3e-9e72-d4ad3a00a386",
                         "object_relation": "ip-src",
                         "value": "1.2.3.4",
                         "type": "ip-src",
@@ -6131,7 +6131,7 @@
                         "to_ids": true
                     },
                     {
-                        "uuid": "dae6c56c-90d4-41fb-a2c6-5ca2d4c12af3",
+                        "uuid": "11606837-1238-4073-a880-1b573e63d94b",
                         "object_relation": "ip-dst",
                         "value": "5.6.7.8",
                         "type": "ip-dst",
@@ -6140,7 +6140,7 @@
                         "to_ids": true
                     },
                     {
-                        "uuid": "45764419-53f0-469e-81f9-4e7d6459ec6d",
+                        "uuid": "efb2965a-34b4-4bc9-a2a0-8c27359e53d9",
                         "object_relation": "hostname-dst",
                         "value": "circl.lu",
                         "type": "hostname",
@@ -6518,6 +6518,59 @@
             }
         }
     },
+    "nova-rule": {
+        "Indicator": {
+            "MISP": {
+                "name": "nova-rule",
+                "uuid": "cb44774d-ce45-411b-b6fb-9f0278edd25c",
+                "Attribute": [
+                    {
+                        "uuid": "434b5d93-9769-5171-be4c-be4ce2c7f70e",
+                        "object_relation": "raw-rule",
+                        "value": "rule MultimodalInjection\n{\n    meta:\n        description = \"Detects multimodal prompt injection attempts\"\n        author = \"@fr0gger_\"\n        version = \"1.0\"\n        category = \"suspicious_patterns/cross_modal\"\n        reference = \"LLM01:2025 Prompt Injection\"\n        uuid = \"520b23d8-54c0-4ade-b8a7-cdc1a90c0def\"\n        date = \"2026-02-21\"\n        severity = \"high\"\n\n    keywords:\n        $image_process = /process (this|the) image|analyze (this|the) image|look at (this|the) image/i\n        $hidden_content = /hidden (text|content|message|instruction)/i\n        $watermark = /watermark|embedded text|text in image/i\n        $multimodal = /multimodal|cross-modal|multiple formats/i\n\n    semantics:\n        $hidden_in_media = \"instructions hidden in the image\" (0.4)\n        $cross_modal_attack = \"combine text and image instructions\" (0.4)\n\n    llm:\n        $image_injection = \"Does this prompt involve processing images that might contain hidden instructions or malicious content?\" (0.3)\n\n    condition:\n        (keywords.$image_process and (keywords.$hidden_content or keywords.$watermark)) or\n        keywords.$multimodal or\n        semantics.$hidden_in_media or\n        semantics.$cross_modal_attack or\n        llm.$image_injection\n}",
+                        "type": "text",
+                        "disable_correlation": false,
+                        "to_ids": false,
+                        "category": "Other"
+                    },
+                    {
+                        "uuid": "864ca22c-f3ef-583d-992a-d6f21845dfb5",
+                        "object_relation": "rule-name",
+                        "value": "MultimodalInjection",
+                        "type": "text",
+                        "disable_correlation": false,
+                        "to_ids": false,
+                        "category": "Other"
+                    }
+                ],
+                "distribution": "5",
+                "sharing_group_id": "0",
+                "timestamp": "1603642920"
+            },
+            "STIX": {
+                "type": "indicator",
+                "spec_version": "2.1",
+                "id": "indicator--cb44774d-ce45-411b-b6fb-9f0278edd25c",
+                "created_by_ref": "identity--a0c22599-9e58-4da4-96ac-7051603fa951",
+                "created": "2020-10-25T16:22:00.000Z",
+                "modified": "2020-10-25T16:22:00.000Z",
+                "name": "MultimodalInjection",
+                "pattern": "rule MultimodalInjection\n{\n    meta:\n        description = \"Detects multimodal prompt injection attempts\"\n        author = \"@fr0gger_\"\n        version = \"1.0\"\n        category = \"suspicious_patterns/cross_modal\"\n        reference = \"LLM01:2025 Prompt Injection\"\n        uuid = \"520b23d8-54c0-4ade-b8a7-cdc1a90c0def\"\n        date = \"2026-02-21\"\n        severity = \"high\"\n\n    keywords:\n        $image_process = /process (this|the) image|analyze (this|the) image|look at (this|the) image/i\n        $hidden_content = /hidden (text|content|message|instruction)/i\n        $watermark = /watermark|embedded text|text in image/i\n        $multimodal = /multimodal|cross-modal|multiple formats/i\n\n    semantics:\n        $hidden_in_media = \"instructions hidden in the image\" (0.4)\n        $cross_modal_attack = \"combine text and image instructions\" (0.4)\n\n    llm:\n        $image_injection = \"Does this prompt involve processing images that might contain hidden instructions or malicious content?\" (0.3)\n\n    condition:\n        (keywords.$image_process and (keywords.$hidden_content or keywords.$watermark)) or\n        keywords.$multimodal or\n        semantics.$hidden_in_media or\n        semantics.$cross_modal_attack or\n        llm.$image_injection\n}",
+                "pattern_type": "nova",
+                "valid_from": "2020-10-25T16:22:00Z",
+                "kill_chain_phases": [
+                    {
+                        "kill_chain_name": "misp-category",
+                        "phase_name": "detection"
+                    }
+                ],
+                "labels": [
+                    "misp:name=\"nova-rule\"",
+                    "misp:meta-category=\"detection\""
+                ]
+            }
+        }
+    },
     "organization": {
         "Identity": {
             "MISP": {
@@ -6615,6 +6668,59 @@
                     "misp:meta-category=\"misc\""
                 ],
                 "x_misp_alias": "CIRCL"
+            }
+        }
+    },
+    "owasp-crs-rule": {
+        "Indicator": {
+            "MISP": {
+                "name": "owasp-crs-rule",
+                "uuid": "3b80a1ad-f1f6-4565-bdbd-909d5bc93048",
+                "Attribute": [
+                    {
+                        "uuid": "b853fd67-ee79-52b4-9ff8-4b53bbd9110c",
+                        "object_relation": "raw-rule",
+                        "value": "SecRule TX:detection_paranoia_level \"@lt %{tx.blocking_paranoia_level}\"      \"id:901500,     phase:1,     deny,     status:500,     t:none,     log,     msg:'Detection paranoia level configured is lower than the paranoia level itself. This is illegal. Blocking request. Aborting',     tag:'OWASP_CRS',     ver:'OWASP_CRS/4.26.0-dev'\"",
+                        "type": "text",
+                        "disable_correlation": false,
+                        "to_ids": false,
+                        "category": "Other"
+                    },
+                    {
+                        "uuid": "b85f27c3-8b88-5cbc-b690-3cbc6b299d1d",
+                        "object_relation": "rule-id",
+                        "value": "CRS Rule 901500",
+                        "type": "text",
+                        "disable_correlation": false,
+                        "to_ids": false,
+                        "category": "Other"
+                    }
+                ],
+                "distribution": "5",
+                "sharing_group_id": "0",
+                "timestamp": "1603642920"
+            },
+            "STIX": {
+                "type": "indicator",
+                "spec_version": "2.1",
+                "id": "indicator--3b80a1ad-f1f6-4565-bdbd-909d5bc93048",
+                "created_by_ref": "identity--a0c22599-9e58-4da4-96ac-7051603fa951",
+                "created": "2020-10-25T16:22:00.000Z",
+                "modified": "2020-10-25T16:22:00.000Z",
+                "name": "CRS Rule 901500",
+                "pattern": "SecRule TX:detection_paranoia_level \"@lt %{tx.blocking_paranoia_level}\"      \"id:901500,     phase:1,     deny,     status:500,     t:none,     log,     msg:'Detection paranoia level configured is lower than the paranoia level itself. This is illegal. Blocking request. Aborting',     tag:'OWASP_CRS',     ver:'OWASP_CRS/4.26.0-dev'\"",
+                "pattern_type": "crs",
+                "valid_from": "2020-10-25T16:22:00Z",
+                "kill_chain_phases": [
+                    {
+                        "kill_chain_name": "misp-category",
+                        "phase_name": "network"
+                    }
+                ],
+                "labels": [
+                    "misp:name=\"owasp-crs-rule\"",
+                    "misp:meta-category=\"network\""
+                ]
             }
         }
     },
@@ -7659,7 +7765,7 @@
                 "meta-category": "misc",
                 "template_uuid": "aa21a3cd-ab2c-442a-9999-a5e6626591ec",
                 "description": "An object describing a Sigma rule (or a Sigma rule name).",
-                "template_version": "1",
+                "template_version": "2",
                 "uuid": "c8c418e3-b61c-4d40-a1fc-b10cec6585d7",
                 "Attribute": [
                     {
@@ -7699,7 +7805,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "5d348d90-de2f-486a-9964-972ff5fedf15",
+                        "uuid": "0f44c6ba-a61f-4e75-bc05-5ff218b6232a",
                         "object_relation": "reference",
                         "value": "https://www.us-cert.gov/ncas/alerts/TA17-293A",
                         "type": "link",
@@ -7782,7 +7888,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "f26c7140-be80-4edf-9d6f-1b74d2afd267",
+                        "uuid": "57acacfb-53e4-4772-9168-927d809817fa",
                         "object_relation": "ref",
                         "value": "https://suricata.readthedocs.io/en/suricata-6.0.4/index.html",
                         "type": "link",
@@ -8780,11 +8886,11 @@
                 "meta-category": "vulnerability",
                 "template_uuid": "81650945-f186-437b-8945-9f31715d32da",
                 "description": "Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.",
-                "template_version": "9",
+                "template_version": "12",
                 "uuid": "5e579975-e9cc-46c6-a6ad-1611a964451a",
                 "Attribute": [
                     {
-                        "uuid": "920eab1d-5c90-4295-8981-7cf364cded90",
+                        "uuid": "a69f8da4-b70c-40e7-bf1a-b510b391da58",
                         "object_relation": "id",
                         "value": "CVE-2017-11774",
                         "type": "vulnerability",
@@ -8793,7 +8899,7 @@
                         "category": "External analysis"
                     },
                     {
-                        "uuid": "a2dce8a4-d7fe-4ca7-95dd-40c24b2a2102",
+                        "uuid": "c270eab2-9694-458b-84f9-903e5507b423",
                         "object_relation": "references",
                         "value": "http://www.securityfocus.com/bid/101098",
                         "type": "link",
@@ -8802,7 +8908,7 @@
                         "category": "External analysis"
                     },
                     {
-                        "uuid": "67d6a055-c335-40e4-a51f-a59993682c74",
+                        "uuid": "818f753b-b697-4fd5-b74b-c3dc8cd7e841",
                         "object_relation": "references",
                         "value": "https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2017-11774",
                         "type": "link",
@@ -8884,6 +8990,59 @@
             }
         }
     },
+    "wazuh-rule": {
+        "Indicator": {
+            "MISP": {
+                "name": "wazuh-rule",
+                "uuid": "a86a1736-90fc-48fa-8e72-8735cac0e14a",
+                "Attribute": [
+                    {
+                        "uuid": "601dc87a-9842-52b8-b4d6-0466faa5e3c1",
+                        "object_relation": "wazuh-rule",
+                        "value": "<rule id=\"200996\" level=\"12\">\n    <decoded_as>json</decoded_as>\n    <field name=\"cluster.name\">\\.+</field>\n    <field name=\"level\">^ERROR$</field>\n    <description>Wazuh-Indexer Cluster Logs - Level: ERROR</description>\n    <options>no_full_log</options>\n  </rule>",
+                        "type": "text",
+                        "disable_correlation": false,
+                        "to_ids": false,
+                        "category": "Other"
+                    },
+                    {
+                        "uuid": "e7d589f6-10b8-54a7-9e9c-14dc4dbc1598",
+                        "object_relation": "rule-id",
+                        "value": "Wazuh-Indexer Cluster Logs - Level: ERROR",
+                        "type": "text",
+                        "disable_correlation": false,
+                        "to_ids": false,
+                        "category": "Other"
+                    }
+                ],
+                "distribution": "5",
+                "sharing_group_id": "0",
+                "timestamp": "1603642920"
+            },
+            "STIX": {
+                "type": "indicator",
+                "spec_version": "2.1",
+                "id": "indicator--a86a1736-90fc-48fa-8e72-8735cac0e14a",
+                "created_by_ref": "identity--a0c22599-9e58-4da4-96ac-7051603fa951",
+                "created": "2020-10-25T16:22:00.000Z",
+                "modified": "2020-10-25T16:22:00.000Z",
+                "name": "Wazuh-Indexer Cluster Logs - Level: ERROR",
+                "pattern": "<rule id=\"200996\" level=\"12\">\n    <decoded_as>json</decoded_as>\n    <field name=\"cluster.name\">\\.+</field>\n    <field name=\"level\">^ERROR$</field>\n    <description>Wazuh-Indexer Cluster Logs - Level: ERROR</description>\n    <options>no_full_log</options>\n  </rule>",
+                "pattern_type": "wazuh",
+                "valid_from": "2020-10-25T16:22:00Z",
+                "kill_chain_phases": [
+                    {
+                        "kill_chain_name": "misp-category",
+                        "phase_name": "misc"
+                    }
+                ],
+                "labels": [
+                    "misp:name=\"wazuh-rule\"",
+                    "misp:meta-category=\"misc\""
+                ]
+            }
+        }
+    },
     "x509": {
         "Indicator": {
             "MISP": {
@@ -8895,7 +9054,7 @@
                 "uuid": "5ac3444e-145c-4749-8467-02550a00020f",
                 "Attribute": [
                     {
-                        "uuid": "edd7d32d-acaf-4fff-80ba-55b6ae6efb54",
+                        "uuid": "8a12a7ba-96e6-41f4-ae0f-67aafdcd1802",
                         "object_relation": "x509-fingerprint-md5",
                         "value": "b2a5abfeef9e36964281a31e17b57c97",
                         "type": "x509-fingerprint-md5",
@@ -8904,7 +9063,7 @@
                         "category": "Network activity"
                     },
                     {
-                        "uuid": "aff1fef1-3116-45bb-975e-14492fd62da0",
+                        "uuid": "793ea3fe-c693-4e25-83ba-1b3d933478f0",
                         "object_relation": "x509-fingerprint-sha1",
                         "value": "5898fc860300e228dcd54c0b1045b5fa0dcda502",
                         "type": "x509-fingerprint-sha1",
@@ -8913,7 +9072,7 @@
                         "category": "Network activity"
                     },
                     {
-                        "uuid": "ba3d9238-f73c-447c-8be6-bccd95a0346a",
+                        "uuid": "a631da42-18f3-4d52-8871-fae6921de951",
                         "object_relation": "issuer",
                         "value": "Issuer Name",
                         "type": "text",
@@ -8922,7 +9081,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "0470f052-15c1-477e-b045-968acbbd7f99",
+                        "uuid": "d0a2a9fc-91ee-49d6-aab3-759a5d63868a",
                         "object_relation": "pubkey-info-algorithm",
                         "value": "PublicKeyAlgorithm",
                         "type": "text",
@@ -8931,7 +9090,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "70f9e416-1349-4fca-9370-d2d09e860f25",
+                        "uuid": "92094fc6-a884-4b30-ba79-1727111176d5",
                         "object_relation": "pubkey-info-exponent",
                         "value": "2",
                         "type": "text",
@@ -8940,7 +9099,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "bb1978a4-9424-4c83-9635-372a2b4a7129",
+                        "uuid": "7fe95008-0040-408d-8669-01e0d4ce22af",
                         "object_relation": "pubkey-info-modulus",
                         "value": "C5",
                         "type": "text",
@@ -8949,7 +9108,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "5f30d031-f7a3-4004-a961-619e43a08d31",
+                        "uuid": "a392ad93-a711-41f6-a7d3-dffa84e2e0d1",
                         "object_relation": "serial-number",
                         "value": "1234567890",
                         "type": "text",
@@ -8958,7 +9117,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "d789d00f-23f6-448f-bebe-af3f481738d2",
+                        "uuid": "7fc8d01f-bca1-4df3-80a4-e61f57e2df63",
                         "object_relation": "signature_algorithm",
                         "value": "SHA1_WITH_RSA_ENCRYPTION",
                         "type": "text",
@@ -8967,7 +9126,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "c56e0c19-b411-4efc-9ef7-fa27f8dae5e7",
+                        "uuid": "3710e9da-c688-4bb3-92ac-230d3ebe2930",
                         "object_relation": "subject",
                         "value": "CertificateSubject",
                         "type": "text",
@@ -8976,7 +9135,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "f5bc2658-fbd7-48b5-ac61-8ccfeb1f8d91",
+                        "uuid": "6eab6004-c1b7-4c5f-8286-d2cd607c2a91",
                         "object_relation": "version",
                         "value": "1",
                         "type": "text",
@@ -8985,7 +9144,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "f7190164-1352-4859-a9d7-93be8a073f12",
+                        "uuid": "4d7549d4-311e-4c27-a527-f50793c378f8",
                         "object_relation": "validity-not-after",
                         "value": "2021-01-01T00:00:00+00:00",
                         "type": "datetime",
@@ -8994,7 +9153,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "380c89b0-1c4b-4f10-8c99-8a94899f56c3",
+                        "uuid": "f2acd957-4210-4659-802b-cbc424f6a7c0",
                         "object_relation": "validity-not-before",
                         "value": "2020-01-01T00:00:00+00:00",
                         "type": "datetime",
@@ -9003,7 +9162,7 @@
                         "category": "Other"
                     },
                     {
-                        "uuid": "acc0254a-ab7c-4373-a582-f966c78a8fa0",
+                        "uuid": "ab88c67f-9c2e-4c0f-b654-95aaf73dd0ee",
                         "object_relation": "pem",
                         "value": "RawCertificateInPEMFormat",
                         "type": "text",
@@ -9254,7 +9413,7 @@
                 "meta-category": "misc",
                 "template_uuid": "b5acf82e-ecca-4868-82fe-9dbdf4d808c3",
                 "description": "An object describing a YARA rule (or a YARA rule name) along with its version.",
-                "template_version": "6",
+                "template_version": "7",
                 "uuid": "cafdd27e-c3e2-4f7a-88b4-4c1c98f18be7",
                 "Attribute": [
                     {
