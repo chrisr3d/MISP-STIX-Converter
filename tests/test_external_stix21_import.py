@@ -1887,6 +1887,74 @@ class TestExternalSTIX21Import(TestExternalSTIX2Import, TestSTIX21, TestSTIX21Im
         self.assertEqual(payload_ref.referenced_uuid, artifact_object.uuid)
         self.assertEqual(payload_ref.relationship_type, 'destination-sent')
 
+    def _check_sigma_indicator_object(self, misp_object, indicator):
+        self.assertEqual(misp_object.name, 'sigma')
+        self.assertEqual(misp_object.uuid, indicator.id.split('--')[1])
+        self.assertEqual(misp_object.timestamp, indicator.modified)
+        pattern_attr, comment_attr, name_attr, ref_attr = misp_object.attributes
+        self.assertEqual(pattern_attr.type, 'sigma')
+        self.assertEqual(pattern_attr.object_relation, 'sigma')
+        self.assertEqual(pattern_attr.value, indicator.pattern)
+        self.assertEqual(comment_attr.type, 'comment')
+        self.assertEqual(comment_attr.object_relation, 'comment')
+        self.assertEqual(comment_attr.value, indicator.description)
+        self.assertEqual(name_attr.type, 'text')
+        self.assertEqual(name_attr.object_relation, 'sigma-rule-name')
+        self.assertEqual(name_attr.value, indicator.name)
+        self.assertEqual(ref_attr.type, 'link')
+        self.assertEqual(ref_attr.object_relation, 'reference')
+        self.assertEqual(ref_attr.value, indicator.external_references[0].url)
+
+    def _check_suricata_indicator_object(self, misp_object, indicator):
+        self.assertEqual(misp_object.name, 'suricata')
+        self.assertEqual(misp_object.uuid, indicator.id.split('--')[1])
+        self.assertEqual(misp_object.timestamp, indicator.modified)
+        pattern_attr, comment_attr, ref_attr = misp_object.attributes
+        self.assertEqual(pattern_attr.type, 'snort')
+        self.assertEqual(pattern_attr.object_relation, 'suricata')
+        self.assertEqual(pattern_attr.value, indicator.pattern)
+        self.assertEqual(comment_attr.type, 'comment')
+        self.assertEqual(comment_attr.object_relation, 'comment')
+        self.assertEqual(comment_attr.value, indicator.description)
+        self.assertEqual(ref_attr.type, 'link')
+        self.assertEqual(ref_attr.object_relation, 'ref')
+        self.assertEqual(ref_attr.value, indicator.external_references[0].url)
+
+    def _check_yara_indicator_object(self, misp_object, indicator):
+        self.assertEqual(misp_object.name, 'yara')
+        self.assertEqual(misp_object.uuid, indicator.id.split('--')[1])
+        self.assertEqual(misp_object.timestamp, indicator.modified)
+        pattern_attr, comment_attr, name_attr = misp_object.attributes
+        self.assertEqual(pattern_attr.type, 'yara')
+        self.assertEqual(pattern_attr.object_relation, 'yara')
+        self.assertEqual(pattern_attr.value, indicator.pattern)
+        self.assertEqual(comment_attr.type, 'comment')
+        self.assertEqual(comment_attr.object_relation, 'comment')
+        self.assertEqual(comment_attr.value, indicator.description)
+        self.assertEqual(name_attr.type, 'text')
+        self.assertEqual(name_attr.object_relation, 'yara-rule-name')
+        self.assertEqual(name_attr.value, indicator.name)
+
+    def test_stix21_bundle_with_patterning_language_indicators(self):
+        bundle = TestExternalSTIX21Bundles.get_bundle_with_patterning_language_indicators()
+        self.parser.load_stix_bundle(bundle)
+        self.parser.parse_stix_bundle()
+        event = self.parser.misp_event
+        _, grouping, sigma_ind, snort_ind, suricata_ind, yara_ind = bundle.objects
+        misp_content = self._check_misp_event_features_from_grouping(
+            event, grouping
+        )
+        self.assertEqual(len(misp_content), 4)
+        sigma_obj, suricata_obj, yara_obj, snort_attr = misp_content
+        self._check_sigma_indicator_object(sigma_obj, sigma_ind)
+        self._check_suricata_indicator_object(suricata_obj, suricata_ind)
+        self._check_yara_indicator_object(yara_obj, yara_ind)
+        self.assertEqual(snort_attr.type, 'snort')
+        self.assertEqual(snort_attr.uuid, snort_ind.id.split('--')[1])
+        self.assertEqual(snort_attr.value, snort_ind.pattern)
+        self.assertEqual(snort_attr.comment, snort_ind.description)
+        self.assertEqual(snort_attr.timestamp, snort_ind.modified)
+
     def test_stix21_bundle_with_process_objects(self):
         bundle = TestExternalSTIX21Bundles.get_bundle_with_process_objects()
         self.parser.load_stix_bundle(bundle)

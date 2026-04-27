@@ -3243,8 +3243,43 @@ class TestInternalSTIX21Import(TestInternalSTIX2Import, TestSTIX21, TestSTIX21Im
         self.parser.load_stix_bundle(bundle)
         self.parser.parse_stix_bundle()
         event = self.parser.misp_event
-        _, grouping, sigma_indicator, suricata_indicator, yara_indicator = bundle.objects
-        sigma, suricata, yara = self._check_misp_event_features_from_grouping(event, grouping)
+        (_, grouping, crs_indicator, nova_indicator, sigma_indicator,
+         suricata_indicator, wazuh_indicator, yara_indicator) = bundle.objects
+        crs, nova, sigma, suricata, wazuh, yara = self._check_misp_event_features_from_grouping(
+            event, grouping
+        )
+        self.assertEqual(crs.name, 'owasp-crs-rule')
+        self.assertEqual(crs.uuid, crs_indicator.id.split('--')[1])
+        self._assert_multiple_equal(
+            crs.timestamp,
+            crs_indicator.created,
+            crs_indicator.modified
+        )
+        rule, rule_id = crs.attributes
+        self.assertEqual(rule.value, crs_indicator.pattern)
+        self.assertEqual(rule.object_relation, 'raw-rule')
+        self.assertEqual(rule_id.value, crs_indicator.name)
+        self.assertEqual(rule_id.object_relation, 'rule-id')
+        self._populate_documentation(
+            misp_object = json.loads(crs.to_json()),
+            indicator = crs_indicator
+        )
+        self.assertEqual(nova.name, 'nova-rule')
+        self.assertEqual(nova.uuid, nova_indicator.id.split('--')[1])
+        self._assert_multiple_equal(
+            nova.timestamp,
+            nova_indicator.created,
+            nova_indicator.modified
+        )
+        rule, rule_name = nova.attributes
+        self.assertEqual(rule.value, nova_indicator.pattern)
+        self.assertEqual(rule.object_relation, 'raw-rule')
+        self.assertEqual(rule_name.value, nova_indicator.name)
+        self.assertEqual(rule_name.object_relation, 'rule-name')
+        self._populate_documentation(
+            misp_object = json.loads(nova.to_json()),
+            indicator = nova_indicator
+        )
         self.assertEqual(sigma.name, sigma_indicator.pattern_type)
         self.assertEqual(sigma.uuid, sigma_indicator.id.split('--')[1])
         self._assert_multiple_equal(
@@ -3281,6 +3316,22 @@ class TestInternalSTIX21Import(TestInternalSTIX2Import, TestSTIX21, TestSTIX21Im
         self._populate_documentation(
             misp_object = json.loads(suricata.to_json()),
             indicator = suricata_indicator
+        )
+        self.assertEqual(wazuh.name, 'wazuh-rule')
+        self.assertEqual(wazuh.uuid, wazuh_indicator.id.split('--')[1])
+        self._assert_multiple_equal(
+            wazuh.timestamp,
+            wazuh_indicator.created,
+            wazuh_indicator.modified
+        )
+        rule, rule_id = wazuh.attributes
+        self.assertEqual(rule.value, wazuh_indicator.pattern)
+        self.assertEqual(rule.object_relation, 'wazuh-rule')
+        self.assertEqual(rule_id.value, wazuh_indicator.name)
+        self.assertEqual(rule_id.object_relation, 'rule-id')
+        self._populate_documentation(
+            misp_object = json.loads(wazuh.to_json()),
+            indicator = wazuh_indicator
         )
         self.assertEqual(yara.name, yara_indicator.pattern_type)
         self.assertEqual(yara.uuid, yara_indicator.id.split('--')[1])

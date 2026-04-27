@@ -2408,6 +2408,73 @@ _NETWORK_TRAFFIC_INDICATORS = [
         "valid_from": "2020-10-25T16:22:00Z"
     }
 ]
+_PATTERNING_LANGUAGE_INDICATORS = [
+    {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--91ae0a21-c7ae-4c7f-b84b-b84a7ce53d1f",
+        "created_by_ref": "identity--a0c22599-9e58-4da4-96ac-7051603fa951",
+        "created": "2020-10-25T16:22:00.000Z",
+        "modified": "2020-10-25T16:22:00.000Z",
+        "name": "Ps.exe Renamed SysInternals Tool",
+        "description": "Sigma test object",
+        "pattern": "[title: Ps.exe Renamed SysInternals Tool description: Detects renamed SysInternals tool execution with a binary named ps.exe as used by Dragonfly APT group and documentied in TA17-293A report reference: https://www.us-cert.gov/ncas/alerts/TA17-293A author: Florian Roth date: 2017/10/22 logsource: product: windows service: sysmon detection: selection: EventID: 1 CommandLine: 'ps.exe -accepteula' condition: selection falsepositives: - Renamed SysInternals tool level: high]",
+        "pattern_type": "sigma",
+        "valid_from": "2020-10-25T16:22:00Z",
+        "external_references": [
+            {
+                "source_name": "us-cert",
+                "description": "TA17-293A report",
+                "url": "https://www.us-cert.gov/ncas/alerts/TA17-293A"
+            }
+        ]
+    },
+    {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--518b4bcb-a86b-4783-9457-391d548b605b",
+        "created_by_ref": "identity--a0c22599-9e58-4da4-96ac-7051603fa951",
+        "created": "2020-10-25T16:22:00.000Z",
+        "modified": "2020-10-25T16:22:00.000Z",
+        "description": "Snort test attribute",
+        "pattern": "[alert http any 443 -> 8.8.8.8 any]",
+        "pattern_type": "snort",
+        "valid_from": "2020-10-25T16:22:00Z"
+    },
+    {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--6b6ad9e2-7e0d-4d8a-9f2a-94a3e6d2f7a1",
+        "created_by_ref": "identity--a0c22599-9e58-4da4-96ac-7051603fa951",
+        "created": "2020-10-25T16:22:00.000Z",
+        "modified": "2020-10-25T16:22:00.000Z",
+        "name": "Suricata DNS rule",
+        "description": "Suricata test object",
+        "pattern": '[alert dns any any -> any any (msg:"DNS Query for malicious domain"; dns_query; content:"evil.example.com"; sid:1000001; rev:1;)]',
+        "pattern_type": "suricata",
+        "valid_from": "2020-10-25T16:22:00Z",
+        "external_references": [
+            {
+                "source_name": "suricata-docs",
+                "description": "Suricata 6 docs",
+                "url": "https://suricata.readthedocs.io/en/suricata-6.0.4/index.html"
+            }
+        ]
+    },
+    {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--34cb1a7c-55ec-412a-8684-ba4a88d83a45",
+        "created_by_ref": "identity--a0c22599-9e58-4da4-96ac-7051603fa951",
+        "created": "2020-10-25T16:22:00.000Z",
+        "modified": "2020-10-25T16:22:00.000Z",
+        "name": "torcryptomining",
+        "description": "Yara test object",
+        "pattern": '[rule torcryptomining { meta: description = "Tor miner - broken UPX magic string" strings: $upx_erase = {(00 FF 99 41|DF DD 30 33)} condition: $upx_erase at 236 }]',
+        "pattern_type": "yara",
+        "valid_from": "2020-10-25T16:22:00Z"
+    }
+]
 _PROCESS_INDICATOR = {
     "type": "indicator",
     "spec_version": "2.1",
@@ -3129,6 +3196,10 @@ class TestExternalSTIX21Bundles(TestSTIX2Bundles):
     @classmethod
     def get_bundle_with_network_traffic_indicators(cls):
         return cls.__assemble_bundle(*_NETWORK_TRAFFIC_INDICATORS)
+
+    @classmethod
+    def get_bundle_with_patterning_language_indicators(cls):
+        return cls.__assemble_bundle(*_PATTERNING_LANGUAGE_INDICATORS)
 
     @classmethod
     def get_bundle_with_process_indicator(cls):

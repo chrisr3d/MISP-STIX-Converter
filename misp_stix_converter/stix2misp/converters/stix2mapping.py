@@ -229,17 +229,8 @@ class STIX2Mapping:
     __sha512_attribute = Mapping(
         **{'type': 'sha512', 'object_relation': 'sha512'}
     )
-    __sigma_attribute = Mapping(
-        **{'type': 'sigma', 'object_relation': 'sigma'}
-    )
-    __sigma_rule_name_attribute = Mapping(
-        **{'type': 'text', 'object_relation': 'sigma-rule-name'}
-    )
     __size_in_bytes_attribute = Mapping(
         **{'type': 'size-in-bytes', 'object_relation': 'size-in-bytes'}
-    )
-    __snort_attribute = Mapping(
-        **{'type': 'snort', 'object_relation': 'suricata'}
     )
     __src_hostname_attribute = Mapping(
         **{'type': 'hostname', 'object_relation': 'src_hostname'}
@@ -321,12 +312,6 @@ class STIX2Mapping:
             'type': 'x509-fingerprint-sha256',
             'object_relation': 'x509-fingerprint-sha256'
         }
-    )
-    __yara_attribute = Mapping(
-        **{'type': 'yara', 'object_relation': 'yara'}
-    )
-    __yara_rule_name_attribute = Mapping(
-        **{'type': 'text', 'object_relation': 'yara-rule-name'}
     )
 
     # OBJECT ATTRIBUTES
@@ -775,6 +760,10 @@ class STIX2Mapping:
         return cls.__received_header_ip_attribute
 
     @classmethod
+    def reference_attribute(cls) -> dict:
+        return cls.__reference_attribute
+
+    @classmethod
     def references_attribute(cls) -> dict:
         return cls.__references_attribute
 
@@ -819,24 +808,8 @@ class STIX2Mapping:
         return cls.__sha512_attribute
 
     @classmethod
-    def sigma_attribute(cls) -> dict:
-        return cls.__sigma_attribute
-
-    @classmethod
-    def sigma_reference_attribute(cls) -> dict:
-        return cls.__reference_attribute
-
-    @classmethod
-    def sigma_rule_name_attribute(cls) -> dict:
-        return cls.__sigma_rule_name_attribute
-
-    @classmethod
     def size_in_bytes_attribute(cls) -> dict:
         return cls.__size_in_bytes_attribute
-
-    @classmethod
-    def snort_attribute(cls) -> dict:
-        return cls.__snort_attribute
 
     @classmethod
     def src_hostname_attribute(cls) -> dict:
@@ -949,18 +922,6 @@ class STIX2Mapping:
     @classmethod
     def x509_sha256_attribute(cls) -> dict:
         return cls.__x509_sha256_attribute
-
-    @classmethod
-    def yara_attribute(cls) -> dict:
-        return cls.__yara_attribute
-
-    @classmethod
-    def yara_reference_attribute(cls) -> dict:
-        return cls.__reference_attribute
-
-    @classmethod
-    def yara_rule_name_attribute(cls) -> dict:
-        return cls.__yara_rule_name_attribute
 
 
 class ExternalSTIX2Mapping(STIX2Mapping):
@@ -1251,7 +1212,8 @@ class InternalSTIX2Mapping(STIX2Mapping):
             'x509': '_object_from_x509',
             **dict.fromkeys(
                 (
-                    'sigma', 'suricata', 'yara'
+                    'nova-rule', 'owasp-crs-rule', 'sigma', 'suricata',
+                    'wazuh-rule', 'yara'
                 ),
                 '_object_from_patterning_language'
             )

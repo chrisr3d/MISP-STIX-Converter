@@ -4813,7 +4813,7 @@ class TestSTIX21JSONObjectsExport(TestSTIX21ObjectsExport):
     def test_event_with_patterning_language_objects(self):
         event = get_event_with_patterning_language_objects()
         self._test_event_with_patterning_language_objects(event['Event'])
-        for misp_object, indicator in zip(self.parser._misp_event.objects, self.parser.stix_objects[-3:]):
+        for misp_object, indicator in zip(self.parser._misp_event.objects, self.parser.stix_objects[-6:]):
             self._populate_documentation(misp_object=misp_object, stix=indicator)
 
     def test_event_with_pe_and_section_indicator_objects(self):

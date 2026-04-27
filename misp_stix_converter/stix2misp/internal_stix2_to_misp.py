@@ -370,5 +370,6 @@ class InternalSTIX2toMISPParser(STIX2toMISPParser):
         self._indicator_references = {
             self._extract_uuid(indicator_id): tuple(val[-1] for val in pattern)
             for indicator_id, indicator in self._indicator.items()
+            if getattr(indicator, 'pattern_type', 'stix') == 'stix'
             for pattern in pattern_parser(indicator).comparisons.values()
         }

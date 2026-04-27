@@ -61,6 +61,10 @@ _LOADED_FEATURES = (
     '_malware_analysis', '_note', '_observed_data', '_opinion',
     '_threat_actor', '_tool', '_vulnerability'
 )
+_SDOs = (
+    '_grouping', '_report', '_location', '_marking_definition',
+    '_relationship', '_sighting', '_observable', *_LOADED_FEATURES
+)
 
 # Typing
 _OBSERVABLE_TYPING = Union[
@@ -140,6 +144,7 @@ class STIX2toMISPParser(STIXtoMISPParser, metaclass=ABCMeta):
 
     def load_stix_bundle(self, bundle: Bundle_v20 | Bundle_v21,
                          invalid_objects: Optional[dict] = {}):
+        self._reset_bundle_state()
         self.__invalid_objects = invalid_objects
         self._set_identifier(bundle.id)
         self.__stix_version = getattr(bundle, 'spec_version', '2.1')
@@ -196,9 +201,19 @@ class STIX2toMISPParser(STIXtoMISPParser, metaclass=ABCMeta):
             UnavailableSynonymsResourceError
         ) as error:
             self._critical_error(error)
-        for feature in ('_grouping', '_report', *_LOADED_FEATURES):
+
+    def _reset_bundle_state(self):
+        super()._reset_bundle_state()
+        self._parsed_object_refs = set()
+        self._creators = set()
+        self._analyst_data = defaultdict(list)
+        for feature in _SDOs:
             if hasattr(self, feature):
-                setattr(self, feature, {})
+                delattr(self, feature)
+
+    def _set_misp_event(self, misp_event):
+        super()._set_misp_event(misp_event)
+        self._parsed_object_refs = set()
 
     ############################################################################
     #                                PROPERTIES                                #
@@ -402,6 +417,7 @@ class STIX2toMISPParser(STIXtoMISPParser, metaclass=ABCMeta):
             raise ObjectRefLoadingError(object_ref)
 
     def _handle_object(self, object_type: str, object_ref: str):
+        self._parsed_object_refs.add(object_ref)
         feature = self._mapping.stix_to_misp_mapping(object_type)
         if feature is None:
             raise UnknownStixObjectTypeError(object_type)

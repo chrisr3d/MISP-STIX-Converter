@@ -70,6 +70,13 @@ class STIXtoMISPParser(AbstractParser):
     def _populate_misp_event(self):
         self.misp_events.append(self.misp_event)
 
+    def _reset_bundle_state(self):
+        self.__replacement_uuids = {}
+        try:
+            del self.__misp_events
+        except AttributeError:
+            pass
+
     def _sanitise_distribution(self, distribution: int) -> int:
         try:
             sanitised = int(distribution)
