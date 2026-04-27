@@ -1212,7 +1212,8 @@ class InternalSTIX2Mapping(STIX2Mapping):
             'x509': '_object_from_x509',
             **dict.fromkeys(
                 (
-                    'sigma', 'suricata', 'yara'
+                    'nova-rule', 'owasp-crs-rule', 'sigma', 'suricata',
+                    'wazuh-rule', 'yara'
                 ),
                 '_object_from_patterning_language'
             )

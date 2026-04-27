@@ -33,11 +33,27 @@ _INDICATOR_TYPING = Union[Indicator_v20, Indicator_v21]
 
 class STIX2IndicatorMapping(STIX2Mapping, metaclass=ABCMeta):
     # SINGLE ATTRIBUTES MAPPING
+    __raw_rule_attribute = Mapping(
+        **{'type': 'text', 'object_relation': 'raw-rule'}
+    )
+    __rule_id_attribute = Mapping(
+        **{'type': 'text', 'object_relation': 'rule-id'}
+    )
     __suricata_reference_attribute = Mapping(
         **{'type': 'link', 'object_relation': 'ref'}
     )
 
     # MISP OBJECTS MAPPING
+    __crs_object_mapping = Mapping(
+        pattern=__raw_rule_attribute,
+        name=__rule_id_attribute,
+        description={'type': 'text', 'object_relation': 'message'}
+    )
+    __nova_object_mapping = Mapping(
+        pattern=__raw_rule_attribute,
+        name={'type': 'text', 'object_relation': 'rule-name'},
+        description=STIX2Mapping.description_attribute()
+    )
     __sigma_object_mapping = Mapping(
         pattern={'type': 'sigma', 'object_relation': 'sigma'},
         description=STIX2Mapping.comment_attribute(),
@@ -52,6 +68,12 @@ class STIX2IndicatorMapping(STIX2Mapping, metaclass=ABCMeta):
         pattern={'type': 'yara', 'object_relation': 'yara'},
         description=STIX2Mapping.comment_attribute(),
         name={'type': 'text', 'object_relation': 'yara-rule-name'},
+        pattern_version=STIX2Mapping.version_attribute()
+    )
+    __wazuh_object_mapping = Mapping(
+        pattern={'type': 'text', 'object_relation': 'wazuh-rule'},
+        name=__rule_id_attribute,
+        description=STIX2Mapping.comment_attribute(),
         pattern_version=STIX2Mapping.version_attribute()
     )
 
@@ -88,6 +110,22 @@ class STIX2IndicatorMapping(STIX2Mapping, metaclass=ABCMeta):
         return cls.registry_key_values_object_mapping().get(field)
 
     @classmethod
+    def crs_object_mapping(cls) -> dict:
+        return cls.__crs_object_mapping
+
+    @classmethod
+    def crs_reference_attribute(cls) -> dict:
+        return cls.reference_attribute()
+
+    @classmethod
+    def nova_object_mapping(cls) -> dict:
+        return cls.__nova_object_mapping
+
+    @classmethod
+    def nova_reference_attribute(cls) -> dict:
+        return cls.reference_attribute()
+
+    @classmethod
     def sigma_object_mapping(cls) -> dict:
         return cls.__sigma_object_mapping
 
@@ -113,6 +151,14 @@ class STIX2IndicatorMapping(STIX2Mapping, metaclass=ABCMeta):
 
     @classmethod
     def yara_reference_attribute(cls) -> dict:
+        return cls.reference_attribute()
+
+    @classmethod
+    def wazuh_object_mapping(cls) -> dict:
+        return cls.__wazuh_object_mapping
+
+    @classmethod
+    def wazuh_reference_attribute(cls) -> dict:
         return cls.reference_attribute()
 
 
@@ -1431,6 +1477,12 @@ class InternalSTIX2IndicatorMapping(
             **InternalSTIX2Mapping.netflow_object_mapping()
         }
     )
+    __patterning_language_mapping = Mapping(
+        crs='owasp-crs-rule',
+        nova='nova-rule',
+        snort='suricata',
+        wazuh='wazuh-rule'
+    )
     __process_pattern_mapping = Mapping(
         **{
             'binary_ref.name': InternalSTIX2Mapping.image_attribute(),
@@ -1538,6 +1590,10 @@ class InternalSTIX2IndicatorMapping(
     @classmethod
     def parler_account_pattern_mapping(cls, field: str) -> dict | None:
         return cls.parler_account_object_mapping().get(field)
+
+    @classmethod
+    def patterning_language_mapping(cls, field: str) -> str:
+        return cls.__patterning_language_mapping.get(field, field)
 
     @classmethod
     def process_pattern_mapping(cls, field: str) -> dict | None:
@@ -2210,20 +2266,19 @@ class InternalSTIX2IndicatorConverter(
 
     def _object_from_patterning_language_indicator(
             self, indicator: _INDICATOR_TYPING):
-        name = (
-            'suricata' if indicator.pattern_type == 'snort'
-            else indicator.pattern_type
-        )
+        feature = indicator.pattern_type
+        mapping_feature = 'suricata' if feature == 'snort' else feature
+        name = self._mapping.patterning_language_mapping(feature)
         misp_object = self._create_misp_object(name, indicator)
-        for attribute in self._generic_parser(indicator, feature=name):
+        attributes = self._generic_parser(indicator, feature=mapping_feature)
+        for attribute in attributes:
             misp_object.add_attribute(**attribute)
-        if hasattr(indicator, 'external_references') and \
-                name in ('sigma', 'suricata'):
+        ref_attr = getattr(
+            self._mapping, f'{mapping_feature}_reference_attribute', None
+        )
+        if hasattr(indicator, 'external_references') and ref_attr is not None:
             for reference in indicator.external_references:
-                attribute = {
-                    'value': reference.url,
-                    **getattr(self._mapping, f'{name}_reference_attribute')()
-                }
+                attribute = {'value': reference.url, **ref_attr()}
                 if hasattr(reference, 'description'):
                     attribute['comment'] = reference.description
                 misp_object.add_attribute(**attribute)
