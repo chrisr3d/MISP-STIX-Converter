@@ -295,7 +295,7 @@ class ExternalSTIX2toMISPParser(STIX2toMISPParser, ExternalSTIXtoMISPParser):
                 if object_ref in self._parsed_object_refs:
                     continue
                 object_type = object_ref.split('--')[0]
-                if object_type in ('relationship', 'sighting'):
+                if object_type in ('extension-definition', 'relationship', 'sighting'):
                     continue
                 if object_type in self._mapping.observable_object_types():
                     observable = self._observable[object_ref]
@@ -315,7 +315,12 @@ class ExternalSTIX2toMISPParser(STIX2toMISPParser, ExternalSTIXtoMISPParser):
                         if cluster['used'].get(self.misp_event.uuid) is None:
                             cluster['used'][self.misp_event.uuid] = False
                     continue
-                self._handle_object(object_type, object_ref)
+                try:
+                    self._handle_object(object_type, object_ref)
+                except UnknownStixObjectTypeError as error:
+                    self._unknown_stix_object_type_error(error)
+                except UnknownParsingFunctionError as error:
+                    self._unknown_parsing_function_error(error)
         if not hasattr(self, '_observable'):
             return super()._handle_unparsed_content()
         unparsed_content = defaultdict(list)

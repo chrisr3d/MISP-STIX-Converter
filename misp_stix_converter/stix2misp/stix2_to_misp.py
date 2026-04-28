@@ -164,9 +164,10 @@ class STIX2toMISPParser(STIXtoMISPParser, metaclass=ABCMeta):
         object_type = stix_object['type']
         feature = self._mapping.stix_object_loading_mapping(object_type)
         if feature is None:
-            self._add_error(
-                f'Unable to load STIX object type: {object_type}'
-            )
+            if object_type not in self._mapping.object_type_refs_to_skip():
+                self._add_error(
+                    f'Unable to load STIX object type: {object_type}'
+                )
             return
         if hasattr(stix_object, 'created_by_ref'):
             self._creators.add(stix_object.created_by_ref)
