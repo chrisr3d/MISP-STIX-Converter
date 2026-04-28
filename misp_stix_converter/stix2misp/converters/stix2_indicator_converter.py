@@ -60,7 +60,7 @@ class STIX2IndicatorMapping(STIX2Mapping, metaclass=ABCMeta):
         name={'type': 'text', 'object_relation': 'sigma-rule-name'}
     )
     __suricata_object_mapping = Mapping(
-        pattern={'type': 'snort', 'object_relation': 'suricata'},
+        pattern={'type': 'suricata', 'object_relation': 'suricata'},
         description=STIX2Mapping.comment_attribute(),
         pattern_version=STIX2Mapping.version_attribute()
     )
@@ -1385,7 +1385,7 @@ class InternalSTIX2IndicatorMapping(
             ),
             **dict.fromkeys(
                 (
-                    'sigma', 'snort', 'yara'
+                    'sigma', 'snort', 'suricata', 'yara'
                 ),
                 '_attribute_from_patterning_language'
             )
