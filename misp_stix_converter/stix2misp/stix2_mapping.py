@@ -33,7 +33,8 @@ class STIX2toMISPMapping(metaclass=ABCMeta):
         'sensitivity', 'shareability'
     )
     __object_type_refs_to_skip = (
-        'opinion', 'relationship', 'sighting', 'x-misp-opinion'
+        'extension-definition', 'opinion', 'relationship', 'sighting',
+        'x-misp-opinion'
     )
     __observable_object_types = (
         # Some observable types that should be handled first
