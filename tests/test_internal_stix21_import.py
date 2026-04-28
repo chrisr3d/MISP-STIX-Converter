@@ -1489,8 +1489,11 @@ class TestInternalSTIX21Import(TestInternalSTIX2Import, TestSTIX21, TestSTIX21Im
         self.parser.load_stix_bundle(bundle)
         self.parser.parse_stix_bundle()
         event = self.parser.misp_event
-        _, grouping, sigma_indicator, snort_indicator, yara_indicator = bundle.objects
-        sigma, snort, yara = self._check_misp_event_features_from_grouping(event, grouping)
+        (_, grouping, sigma_indicator, snort_indicator,
+         suricata_indicator, yara_indicator) = bundle.objects
+        sigma, snort, suricata, yara = self._check_misp_event_features_from_grouping(
+            event, grouping
+        )
         self._check_patterning_language_attribute(sigma, sigma_indicator)
         self._populate_documentation(
             attribute=json.loads(sigma.to_json()), stix=sigma_indicator
@@ -1498,6 +1501,10 @@ class TestInternalSTIX21Import(TestInternalSTIX2Import, TestSTIX21, TestSTIX21Im
         self._check_patterning_language_attribute(snort, snort_indicator)
         self._populate_documentation(
             attribute=json.loads(snort.to_json()), stix=snort_indicator
+        )
+        self._check_patterning_language_attribute(suricata, suricata_indicator)
+        self._populate_documentation(
+            attribute=json.loads(suricata.to_json()), stix=suricata_indicator
         )
         self._check_patterning_language_attribute(yara, yara_indicator)
         self._populate_documentation(
@@ -3251,9 +3258,7 @@ class TestInternalSTIX21Import(TestInternalSTIX2Import, TestSTIX21, TestSTIX21Im
         self.assertEqual(crs.name, 'owasp-crs-rule')
         self.assertEqual(crs.uuid, crs_indicator.id.split('--')[1])
         self._assert_multiple_equal(
-            crs.timestamp,
-            crs_indicator.created,
-            crs_indicator.modified
+            crs.timestamp, crs_indicator.created, crs_indicator.modified
         )
         rule, rule_id = crs.attributes
         self.assertEqual(rule.value, crs_indicator.pattern)

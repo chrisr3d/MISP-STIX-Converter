@@ -29,7 +29,7 @@ class MISPtoSTIX21Mapping(MISPtoSTIX2Mapping):
         **{
             'email-message-id': '_parse_email_message_id_attribute',
             **dict.fromkeys(
-                ('sigma', 'snort', 'yara'),
+                ('sigma', 'snort', 'suricata', 'yara'),
                 '_parse_patterning_language_attribute'
             ),
             **MISPtoSTIX2Mapping.attribute_types_mapping()

@@ -8126,6 +8126,22 @@ _PATTERNING_LANGUAGE_ATTRIBUTES = [
     {
         "type": "indicator",
         "spec_version": "2.1",
+        "id": "indicator--6b6ad9e2-7e0d-4d8a-9f2a-94a3e6d2f7a1",
+        "created_by_ref": "identity--a0c22599-9e58-4da4-96ac-7051603fa951",
+        "created": "2020-10-25T16:22:00.000Z",
+        "modified": "2020-10-25T16:22:00.000Z",
+        "description": "Suricata test attribute",
+        "pattern": '[alert dns any any -> any any (msg:"DNS Query for malicious domain"; dns_query; content:"evil.example.com"; sid:1000001; rev:1;)]',
+        "pattern_type": "suricata",
+        "valid_from": "2020-10-25T16:22:00Z",
+        "kill_chain_phases": [
+            {"kill_chain_name": "misp-category", "phase_name": "Network activity"}
+        ],
+        "labels": ['misp:type="suricata"', 'misp:category="Network activity"']
+    },
+    {
+        "type": "indicator",
+        "spec_version": "2.1",
         "id": "indicator--34cb1a7c-55ec-412a-8684-ba4a88d83a45",
         "created_by_ref": "identity--a0c22599-9e58-4da4-96ac-7051603fa951",
         "created": "2020-10-25T16:22:00.000Z",
@@ -8206,7 +8222,7 @@ _PATTERNING_LANGUAGE_OBJECTS = [
         "modified": "2020-10-25T16:22:00.000Z",
         "description": "To rule them all",
         "pattern": "alert http any 443 -> 8.8.8.8 any",
-        "pattern_type": "snort",
+        "pattern_type": "suricata",
         "pattern_version": "3.1.6",
         "valid_from": "2020-10-25T16:22:00Z",
         "kill_chain_phases": [

@@ -3111,7 +3111,7 @@ _TEST_PATTERNING_LANGUAGE_OBJECTS = [
         "timestamp": "1603642920",
         "Attribute": [
             {
-                "type": "snort",
+                "type": "suricata",
                 "object_relation": "suricata",
                 "value": "alert http any 443 -> 8.8.8.8 any"
             },
@@ -4949,6 +4949,14 @@ def get_event_with_patterning_language_attributes():
             "value": "alert http any 443 -> 8.8.8.8 any",
             "timestamp": "1603642920",
             "comment": "Snort test attribute"
+        },
+        {
+            "uuid": "6b6ad9e2-7e0d-4d8a-9f2a-94a3e6d2f7a1",
+            "type": "suricata",
+            "category": "Network activity",
+            "value": 'alert dns any any -> any any (msg:"DNS Query for malicious domain"; dns_query; content:"evil.example.com"; sid:1000001; rev:1;)',
+            "timestamp": "1603642920",
+            "comment": "Suricata test attribute"
         },
         {
             "uuid": "34cb1a7c-55ec-412a-8684-ba4a88d83a45",
