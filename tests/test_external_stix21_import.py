@@ -1910,7 +1910,7 @@ class TestExternalSTIX21Import(TestExternalSTIX2Import, TestSTIX21, TestSTIX21Im
         self.assertEqual(misp_object.uuid, indicator.id.split('--')[1])
         self.assertEqual(misp_object.timestamp, indicator.modified)
         pattern_attr, comment_attr, ref_attr = misp_object.attributes
-        self.assertEqual(pattern_attr.type, 'snort')
+        self.assertEqual(pattern_attr.type, 'suricata')
         self.assertEqual(pattern_attr.object_relation, 'suricata')
         self.assertEqual(pattern_attr.value, indicator.pattern)
         self.assertEqual(comment_attr.type, 'comment')
