@@ -556,14 +556,14 @@ files = [
 
 [[package]]
 name = "pymisp"
-version = "2.5.34"
+version = "2.5.34.1"
 description = "Python API for MISP."
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "pymisp-2.5.34-py3-none-any.whl", hash = "sha256:b2d952dc27b420e83107bad9a9411903d4d97d9bb3d5529e690530791972f3f1"},
-    {file = "pymisp-2.5.34.tar.gz", hash = "sha256:0eeb248d4f53d46cc735e33c00429fe09cf5a91b1fb3d32b39698a33e4f1074f"},
+    {file = "pymisp-2.5.34.1-py3-none-any.whl", hash = "sha256:7ed974fa4ab325ddcb8eee4be7d6723636f849516c54a055da1ea1638cbfcd37"},
+    {file = "pymisp-2.5.34.1.tar.gz", hash = "sha256:dc7d44213064b5fc920dfeb8feae21165eb6543288e3809f2a5c6dd86ec37fa5"},
 ]
 
 [package.dependencies]
@@ -1074,4 +1074,4 @@ dev = ["pytest", "setuptools"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "aecf8d1c96497cbf6b0f360d8e508c02276a66f307fd6b07ff3ae2bd4df48b4c"
+content-hash = "f0a0c441cbd01abe98e76635f016ae3e79107db4c304c9afab70bca2f273cf36"
