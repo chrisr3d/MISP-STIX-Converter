@@ -1,4 +1,4 @@
-# MISP Objects to STIX1 mapping
+# MISP Objects to STIX 2.1 mapping
 
 MISP Objects are containers of single MISP attributes that are grouped together to highlight their meaning in a real use case scenario.
 For instance, if you want to share a report with suspicious files, without object templates you would end up with a list of file names, hashes, and other attributes that are all mixed together, making the differentiation of each file difficult. In this case with the file object template, we simply group together all the attributes which belong to each file.
