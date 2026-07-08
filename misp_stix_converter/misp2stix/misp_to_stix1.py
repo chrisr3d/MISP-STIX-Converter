@@ -1086,6 +1086,11 @@ class MISPtoSTIX1Parser(MISPtoSTIXParser, metaclass=ABCMeta):
     def _datetime_to_str(timestamp):
         return datetime.strftime(timestamp, "%Y-%m-%dT%H:%M:%SZ")
 
+    def _is_tlp_tag(self, tag: str) -> bool:
+        if not tag.startswith('tlp:'):
+            return False
+        return tag.startswith('tlp:') and self._mapping.TLP_order(':'.join(tag.split(':')[1:])) is not None
+
     def _sort_tags(self, tags: list) -> Tuple[dict, dict]:
         sorted_tags = defaultdict(list)
         confidence_tags = {}
@@ -2372,11 +2377,6 @@ class MISPtoSTIX1EventsParser(MISPtoSTIX1Parser):
         return datetime(
             date_value.year, date_value.month, date_value.day
         ).replace(tzinfo=timezone.utc)
-
-    def _is_tlp_tag(self, tag: str) -> bool:
-        if not tag.startswith('tlp:'):
-            return False
-        return tag.startswith('tlp:') and self._mapping.TLP_order(':'.join(tag.split(':')[1:])) is not None
 
     def _quick_fetch_ttp_timestamp(self, object_id: str) -> datetime:
         for ttp in self._stix_package.ttps.ttp:
