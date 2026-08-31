@@ -1,4 +1,4 @@
-# Events mapping
+# MISP Events to STIX 2.0 mapping
 
 MISP Events are exported within STIX Bundles and some of the metadata fields are embedded within Report objects:
 - Base event
